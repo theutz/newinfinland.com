@@ -1,8 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { injectGlobal } from 'emotion'
+import styled from 'react-emotion'
+import { ThemeProvider } from 'emotion-theming'
+import { normalize } from 'polished'
 
-import Header from '../components/header'
+import * as theme from 'theme'
+import { Header } from 'components/header'
+import { Container } from 'components/Container'
+import { AppStyle } from 'components/AppStyle'
+
+injectGlobal(normalize())
 
 const Layout = ({
   children,
@@ -13,17 +22,19 @@ const Layout = ({
   },
 }) => {
   return (
-    <div>
-      <Helmet
-        title={title}
-        meta={[
-          { name: 'description', content: description },
-          { name: 'keywords', content: keywords.join(', ') },
-        ]}
-      />
-      <Header siteTitle={title} />
-      <div>{children()}</div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <AppStyle>
+        <Helmet
+          title={title}
+          meta={[
+            { name: 'description', content: description },
+            { name: 'keywords', content: keywords.join(', ') },
+          ]}
+        />
+        <Header siteTitle={title} />
+        <Container>{children()}</Container>
+      </AppStyle>
+    </ThemeProvider>
   )
 }
 
