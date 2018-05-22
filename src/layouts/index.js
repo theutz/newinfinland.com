@@ -4,19 +4,28 @@ import Helmet from 'react-helmet'
 
 import Header from '../components/header'
 
-const Layout = ({ children, data }) => (
-  <div>
-    <Helmet
-      title={data.site.siteMetadata.title}
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
-      ]}
-    />
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div>{children()}</div>
-  </div>
-)
+const Layout = ({
+  children,
+  data: {
+    site: {
+      siteMetadata: { title, description, keywords },
+    },
+  },
+}) => {
+  return (
+    <div>
+      <Helmet
+        title={title}
+        meta={[
+          { name: 'description', content: description },
+          { name: 'keywords', content: keywords.join(', ') },
+        ]}
+      />
+      <Header siteTitle={title} />
+      <div>{children()}</div>
+    </div>
+  )
+}
 
 Layout.propTypes = {
   children: PropTypes.func,
@@ -29,6 +38,8 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        keywords
+        description
       }
     }
   }
