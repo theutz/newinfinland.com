@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'NewInFinland.com',
+    title: 'New In Finland',
     keywords: ['Finland', 'expat', 'new', 'tourist', 'travel', 'move'],
     description: 'A site for people that are new to Finland',
   },

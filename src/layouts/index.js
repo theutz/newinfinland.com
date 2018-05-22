@@ -7,11 +7,17 @@ import { ThemeProvider } from 'emotion-theming'
 import { normalize } from 'polished'
 
 import * as theme from 'theme'
-import { Header } from 'components/header'
-import { Container } from 'components/Container'
-import { AppStyle } from 'components/AppStyle'
+import Header from 'components/header'
+import Container from 'components/Container'
+import AppStyle from 'components/AppStyle'
 
-injectGlobal(normalize())
+injectGlobal`
+  * {
+    box-sizing: border-box;
+  }
+
+  ${normalize()}
+`
 
 const Layout = ({
   children,

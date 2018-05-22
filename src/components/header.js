@@ -1,9 +1,11 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import { Container } from 'components/Container'
+import styled from 'react-emotion'
 
-export const Header = ({ siteTitle }) => (
-  <div>
+import Link from 'components/Link'
+import Container from 'components/Container'
+
+const Header = ({ siteTitle, ...props }) => (
+  <div {...props}>
     <Container>
       <h1>
         <Link to="/">{siteTitle}</Link>
@@ -11,3 +13,7 @@ export const Header = ({ siteTitle }) => (
     </Container>
   </div>
 )
+
+export default styled(Header)`
+  overflow: hidden;
+`
